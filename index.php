@@ -30,7 +30,7 @@ print_r($person1->select);
 
 //
 
-$table = new DbTable(
+$table1 = new DbTable(
     new mysqli(
         "localhost",
         "root",
@@ -48,47 +48,49 @@ $table = new DbTable(
 //     "city_of_birth" => 'Vitebsk'
 // ]);
 
-$table->edit(
+$table1->edit(
     67,
     [
         "name" => "nins",
-        "date" => $table::getAge('2015-09-30'),
-        "gender" => $table::getGender('1')
+        "date" => $table1::getAge('2015-09-30'),
+        "gender" => $table1::getGender('1')
     ]
 );
 //удалит пользователя с id=62
-$table->dell(62);
+$table1->dell(62);
 
 echo "<pre>";
 // print_r($table->get());
 
 
 if (class_exists('app\DbTable')) {
-    $table2  = new MyClass(
+    $table3  = new MyClass(
+        $table1,
         new mysqli(
             "localhost",
             "root",
             "root",
             "test"
         ),
-        "people"
+        "people",
+        NULL,
+        'fifag',
+        NULL,
+        0,
+        NULL
     );
+    $table3->dellete();
 
     //вернет список id по указанному условию
-    // print_r($table2->id);
-
-    // $table2->add([
-    //         "name" => "Olha",
-    //         "surname" => "Ivanova",
-    //         "date" => '1985-09-30',
-    //         "gender" => 1,
-    //         "city_of_birth" => 'Vitebsk'
-    //     ]);
-
-    print_r($table2->get());
+    print_r($table3->id);
+    print_r($table3->getArr());
 } else {
     echo "error";
 }
 
 // $table2->dellete();
-print_r($table2->getArr());
+// print_r($table2->get());
+
+// echo date("m.d.Y",30*60*60*24*365);
+
+// $table->formater(['name' => 'kdjf']);

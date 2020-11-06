@@ -3,17 +3,18 @@
 namespace app;
 
 use mysqli;
+use stdClass;
 
 class DbTable
 {
-    protected $mysqli;
-    protected $tableName;
-    protected $id;
-    protected $name;
-    protected $surname;
-    protected $date;
-    protected $gender;
-    protected $city;
+    public $mysqli;
+    public $tableName;
+    public $id;
+    public $name;
+    public $surname;
+    public $date;
+    public $gender;
+    public $city;
 
 
     public function __construct(mysqli $mysqli, $tableName, $id = Null, $name = Null, $surname = Null, $date = Null, $gender = Null, $city = Null)
@@ -42,7 +43,7 @@ class DbTable
         }
     }
 
-    //метод,выводит все записи из табл
+   // метод,выводит все записи из табл
     public function get(): array
     {
         $arrDB = $this->mysqli->query("SELECT * FROM $this->tableName;");
@@ -54,14 +55,7 @@ class DbTable
         return $array;
     }
 
-    // public function add2()
-    // {
-    //     $sql = "INSERT INTO `people` (`id`, `name`, `surname`, `date`, `sex_id`, `city_of_birth`)" .
-    //         " VALUES (Null,'$this->name', '$this->surname', '$this->date', '$this->sex', '$this->city');";
-
-    //     return $this->mysqli->query($sql);
-    // }
-
+    
     //метод добавления записи в таблицу(помимо конструктора)
     public function add(array $data)
     {
@@ -107,6 +101,7 @@ class DbTable
     {
         return floor((time() - strtotime($date)) / (60 * 60 * 24 * 365));
     }
+
     public static function getGender(int $gender)
     {
         $gender  = '';
@@ -118,8 +113,17 @@ class DbTable
         }
         return $gender;
     }
-    //     function makeModel($ModelName){
-    //         $model = new $ModelName;
-    //         return  $model;
+
+    // public function formater($data)
+    // {
+    //     $new = [];
+    //     foreach ($new as $key) {
+    //         foreach ($data as $key2) {
+    //         }
+    //         $key = $key2;
+    //     }
+
+        // print_r($new);
+    //     return (object) $new;
     // }
 }
