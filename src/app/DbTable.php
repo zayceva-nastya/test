@@ -43,7 +43,7 @@ class DbTable
         }
     }
 
-   // метод,выводит все записи из табл
+    // метод,выводит все записи из табл
     public function get(): array
     {
         $arrDB = $this->mysqli->query("SELECT * FROM $this->tableName;");
@@ -55,7 +55,7 @@ class DbTable
         return $array;
     }
 
-    
+
     //метод добавления записи в таблицу(помимо конструктора)
     public function add(array $data)
     {
@@ -114,16 +114,22 @@ class DbTable
         return $gender;
     }
 
-    // public function formater($data)
-    // {
-    //     $new = [];
-    //     foreach ($new as $key) {
-    //         foreach ($data as $key2) {
-    //         }
-    //         $key = $key2;
-    //     }
-
-        // print_r($new);
-    //     return (object) $new;
-    // }
+    public function formater($data)
+    {
+        $r = [];
+        foreach ($data as $keys => $value) {
+            $r[$keys] = $value;
+            if ($keys == 'date') {
+                $r[$keys] = date('Y-m-d', time() - $value * 3600 * 24 * 365);
+            }
+            if ($keys == 'gender') {
+                if ($value = 'муж') {
+                    $r[$keys] = 0;
+                } elseif ($value = 'жен') {
+                    $r[$keys] = 1;
+                }
+            }
+        }
+        return (object)$r;
+    }
 }

@@ -15,18 +15,18 @@ use app\MyClass;
 //         "test"
 //     ),
 //     "people",
-//     14,
-//     'Kate',
-//     'Fifa',
-//     '1999-02-25',
-//     '1',
+//     NULL,
+//     'Serg',
+//     'TRUE',
+//     '25',
+//     'муж',
 //     'Vitebsk'
 // );
 
 //вернет пользователя с id = 14
 
 
-print_r($person1->select);
+// print_r($person1->select);
 
 //
 
@@ -48,16 +48,16 @@ $table1 = new DbTable(
 //     "city_of_birth" => 'Vitebsk'
 // ]);
 
-$table1->edit(
-    67,
-    [
-        "name" => "nins",
-        "date" => $table1::getAge('2015-09-30'),
-        "gender" => $table1::getGender('1')
-    ]
-);
+// $table1->edit(
+//     98,
+//     [
+//         "name" => "nins",
+//         "date" => $table1::getAge('1998-12-12'),
+//         "gender" => $table1::getGender('1')
+//     ]
+// );
 //удалит пользователя с id=62
-$table1->dell(62);
+// $table1->dell(62);
 
 echo "<pre>";
 // print_r($table->get());
@@ -73,13 +73,13 @@ if (class_exists('app\DbTable')) {
             "test"
         ),
         "people",
+        'Serg',
         NULL,
-        'fifag',
         NULL,
-        0,
+        NULL,
         NULL
     );
-    $table3->dellete();
+    // $table3->dellete();
 
     //вернет список id по указанному условию
     print_r($table3->id);
@@ -91,6 +91,13 @@ if (class_exists('app\DbTable')) {
 // $table2->dellete();
 // print_r($table2->get());
 
-// echo date("m.d.Y",30*60*60*24*365);
 
-// $table->formater(['name' => 'kdjf']);
+print_r($table1->formater([
+    "name" => "Serg",
+    "surname" => "Zajcev",
+    "date" => '21',
+    "gender" => '0',
+    "city_of_birth" => 'Vitebsk'
+]));
+
+print_r($table1->get());

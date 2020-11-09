@@ -13,16 +13,19 @@ class MyClass
 
     public function __construct(DBTable $dbTable, mysqli $mysqli, $tableName, $name, $surname, $date, $gender, $city)
     {
-        $this->dbTable = $dbTable;
+         
+             $this->dbTable = $dbTable;
         $this->mysqli = $mysqli;
         $this->tableName = $tableName;
 
-        $this->result =$this->mysqli->query("SELECT `id` FROM `$tableName` WHERE `name`='$name' or `surname`='$surname' or `date`='$date' or `gender`='$gender' or `city_of_birth`='$city' ;");
+        $this->result = $this->mysqli->query("SELECT `id` FROM `$tableName` WHERE `name`<>'$name' or `surname`='$surname' or `date`='$date' or `gender`='$gender' or `city_of_birth`='$city' ;");
 
         $this->id = [];
         while ($row = $this->result->fetch_assoc()) {
-            $this->id[] = $row;
-        }
+            $this->id[] = $row; 
+            }
+        
+         
     }
 
 
